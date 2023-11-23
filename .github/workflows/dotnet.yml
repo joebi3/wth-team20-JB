@@ -3,6 +3,14 @@
 
 name: .NET
 
+
+
+
+  environment:
+    - REGISTRY_NAME=registryName
+    - REPOSITORY_NAME=repositoryName 
+    - DOCKER_FOLDER_PATH=dockerFolderPath
+    - TAG=tag
 on:
   push:
     branches: main
