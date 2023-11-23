@@ -1,16 +1,12 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
+env:
+  REGISTRY_NAME: registryName
+  REPOSITORY_NAME: repositoryName
+  DOCKER_FOLD_PATH: dockerFolderPath 
+  TAG: ${{ github.run_number }}
+  
 name: .NET
-
-
-
-
-  environment:
-    - REGISTRY_NAME=registryName
-    - REPOSITORY_NAME=repositoryName 
-    - DOCKER_FOLDER_PATH=dockerFolderPath
-    - TAG=tag
 on:
   push:
     branches: main
