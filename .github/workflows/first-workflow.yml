@@ -1,6 +1,5 @@
-name:first-workflow
-
-on:
+name: first-workflow
+on: 
   push:
     branches: [ $default-branch ]
   pull_request:
