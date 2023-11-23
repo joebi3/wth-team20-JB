@@ -6,10 +6,8 @@ on:
     branches: [ $default-branch ]
 
 jobs:
-  name: Job1
-  build:
+  job1:
     runs-on: ubuntu-latest
-
     steps:
       - name: Run a one-line script
         run: echo Step1
