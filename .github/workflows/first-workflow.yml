@@ -1,20 +1,19 @@
-name: first-workflow
-on: workflow_dispatch 
+Name: Starter Workflow Demo
+
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
+
 jobs:
-  job1:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Run a one-line script
-        run: echo Step1
-      - name: Run another one-line script
-        run: echo Step2
-  job2:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Cowsays
-       uses: mscoutermarsh/cowsays-action@v1
-       with:
-         text: Moo! ship it!
-         color: White
+      - uses: actions/checkout@v3
+
+      - name: demo workflow job
+        run: echo This is a demo start workflow
           
   
