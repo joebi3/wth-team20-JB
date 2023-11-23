@@ -78,7 +78,7 @@ jobs:
      
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'rgy6qm6rnp75c-wth-ai'
+        app-name: "rgy6qm6rnp75c-dev"
         images: $REGISTRY_NAME/$REPOSITORY_NAME:$TAG
 
 
