@@ -3,7 +3,7 @@
 env:
   REGISTRY_NAME: rgy6qm6rnp75cwthreg.azurecr.io
   REPOSITORY_NAME: "wth/dotnetcoreapp"
-  DOCKER_FOLD_PATH: Application/src/RazorPagesTestSample
+  DOCKER_FOLDER_PATH: Application/src/RazorPagesTestSample
   TAG: ${{ github.run_number }}
   
 name: .NET
@@ -48,17 +48,21 @@ jobs:
     needs: build 
     steps:
 
-    #- name: debug
-    #  run: echo "My environment variable values: $secrets.ACR_USERNAME  $secrets.ACR_PASSWORD"
+
       
     - uses: actions/checkout@v3
-      
+
+    #- name: debug
+    #  run: echo "My environment variable values: $ACR_USERNAME"
+    #  env:
+    #    ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
+        
     - name: Docker_login2
-      run: docker login $registryName -u ${{ secrets.ACR_USERNAME }} -p ${{ secrets.ACR_PASSWORD }}
+      run: docker login $REGISTRY_NAME -u ${{ secrets.ACR_USERNAME }} -p ${{ secrets.ACR_PASSWORD }}
 
     - name: Docker_build2
-      run: docker build -t $registryName/$repositoryName:$tag --build-arg build_version=$tag $dockerFolderPath
+      run: docker build -t $REGISTRY_NAME/$REGISTRY_NAME:$TAG --build-arg build_version=$TAG $DOCKER_FOLDER_PATH
 
     - name: Docker_push2
-      run: docker push $registryName/$repositoryName:$tag
+      run: docker push $REGISTRY_NAME/$REGISTRY_NAME:$TAG
 
