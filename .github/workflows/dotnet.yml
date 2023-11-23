@@ -1,0 +1,39 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: main
+    paths: 'Application/**'
+  pull_request:
+    branches: main
+    paths: 'Application/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore
+      run: dotnet restore Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj
+      continue-on-error: true
+    - name: Build
+      if: steps.Restore.outcome == 'success'
+      run: dotnet build --no-restore Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj
+      continue-on-error: true
+    - name: Test
+      if: success()
+      run: dotnet test Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.csproj --no-build --verbosity normal 
+      continue-on-error: true
+    - name: Notification
+      if: failure()
+      run: gh issue create --title "I found a bug" --body "Nothing works"
+      continue-on-error: true
