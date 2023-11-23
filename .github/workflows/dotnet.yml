@@ -41,3 +41,21 @@ jobs:
       if: failure()
       run: gh issue create --title "I found a bug" --body "Nothing works"
       continue-on-error: true
+
+
+  newbuild:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: stuff
+      uses: actions/checkout@v2
+      
+    - name: Docker_login2
+      run: docker login $registryName -u ACR_USERNAME -p ACR_PASSWORD
+
+    - name: Docker_build2
+      run: docker build -t $registryName/$repositoryName:$tag --build-arg build_version=$tag $dockerFolderPath
+
+    - name: Docker_push2
+      run: docker push $registryName/$repositoryName:$tag
+
