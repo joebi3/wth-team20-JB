@@ -66,3 +66,20 @@ jobs:
     - name: Docker_push2
       run: docker push $REGISTRY_NAME/$REPOSITORY_NAME:$TAG
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: newbuild
+    steps:
+    
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+     
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'rgy6qm6rnp75c-wth-ai'
+        images: $REGISTRY_NAME/$REPOSITORY_NAME:$TAG
+
+
+
