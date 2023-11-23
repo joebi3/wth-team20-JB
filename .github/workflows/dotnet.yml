@@ -61,8 +61,8 @@ jobs:
       run: docker login $REGISTRY_NAME -u ${{ secrets.ACR_USERNAME }} -p ${{ secrets.ACR_PASSWORD }}
 
     - name: Docker_build2
-      run: docker build -t $REGISTRY_NAME/$REGISTRY_NAME:$TAG --build-arg build_version=$TAG $DOCKER_FOLDER_PATH
+      run: docker build -t $REGISTRY_NAME/$REPOSITORY_NAME:$TAG --build-arg build_version=$TAG $DOCKER_FOLDER_PATH
 
     - name: Docker_push2
-      run: docker push $REGISTRY_NAME/$REGISTRY_NAME:$TAG
+      run: docker push $REGISTRY_NAME/$REPOSITORY_NAME:$TAG
 
