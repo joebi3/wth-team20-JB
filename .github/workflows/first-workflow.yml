@@ -8,3 +8,13 @@ jobs:
         run: echo Step1
       - name: Run another one-line script
         run: echo Step2
+  job2:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Cowsays
+       uses: mscoutermarsh/cowsays-action@v1
+       with:
+         text: Moo! ship it!
+         color: White
+          
+  
